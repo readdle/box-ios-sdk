@@ -1,5 +1,5 @@
 //
-//  BOXContentSDK.h
+//  BoxContentSDK.h
 //  BoxContentSDK
 //
 //  Created on 2/19/13.

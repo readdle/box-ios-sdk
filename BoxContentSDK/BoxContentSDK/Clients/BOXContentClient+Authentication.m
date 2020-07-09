@@ -11,7 +11,6 @@
 #import "BOXContentClient+Authentication.h"
 #import "BOXContentClient+User.h"
 #import "BOXContentSDKErrors.h"
-#import "BOXAuthorizationViewController.h"
 #import "BOXUser.h"
 #import "BOXSharedLinkHeadersHelper.h"
 #import "BOXAppToAppApplication.h"
@@ -208,29 +207,9 @@
 
 - (void)showWebViewAuthenticationViewControllerWithCompletionBlock:(void (^)(BOXUser *user, NSError *error))completion
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        BOXAuthorizationViewController *authorizationController = [[BOXAuthorizationViewController alloc] initWithSDKClient:self completionBlock:^(BOXAuthorizationViewController *authViewController, BOXUser *user, NSError *error) {
-            [[authViewController navigationController] dismissViewControllerAnimated:YES completion:nil];
-            if (completion) {
-                completion(user, error);
-            }
-        } cancelBlock:^(BOXAuthorizationViewController *authViewController) {
-            [[authViewController navigationController] dismissViewControllerAnimated:YES completion:nil];
-            if (completion) {
-                NSError *error = [[NSError alloc] initWithDomain:BOXContentSDKErrorDomain code:BOXContentSDKAPIUserCancelledError userInfo:nil];
-                completion(nil, error);
-            }
-        }];
-        UIViewController *rootViewController = [[[[UIApplication box_sharedApplication] delegate] window] rootViewController];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:authorizationController];
-        navController.modalPresentationStyle = UIModalPresentationFormSheet;
-        // if there are presented view controllers, we need to present the auth controller on the topmost presented view controller
-        UIViewController *viewControllerToPresentOn = rootViewController;
-        while (viewControllerToPresentOn.presentedViewController) {
-            viewControllerToPresentOn = viewControllerToPresentOn.presentedViewController;
-        }
-        [viewControllerToPresentOn presentViewController:navController animated:YES completion:nil];
-    });
+    if (completion != nil) {
+        completion(nil, [NSError errorWithDomain:BOXContentSDKErrorDomain code:BOXContentSDKAuthErrorNotPossible userInfo:nil]);
+    }
 }
 
 - (NSString *)authenticationRedirectURIScheme

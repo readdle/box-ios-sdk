@@ -31,7 +31,6 @@
 #import "BOXContentClient+RecentItems.h"
 
 // Session
-#import "BOXAuthorizationViewController.h"
 #import "BOXAbstractSession.h"
 #import "BOXAbstractSession_Private.h"
 #import "BOXOAuth2Session.h"

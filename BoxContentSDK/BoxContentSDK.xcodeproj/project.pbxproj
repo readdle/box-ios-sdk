@@ -99,7 +99,6 @@
 		59659D7C1EAAC6E500431413 /* BOXFileCollaborationsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59659D7A1EAAC6E500431413 /* BOXFileCollaborationsRequest.m */; };
 		59659D7E1EAEBB2E00431413 /* BOXFileCollaborationsRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59659D7D1EAEBB2E00431413 /* BOXFileCollaborationsRequestTests.m */; };
 		596BE96A1A39142900206660 /* BOXFileCopyRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 596BE9691A39142900206660 /* BOXFileCopyRequestTests.m */; };
-		599B19621E4BE67600709C27 /* BOXAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FAD997172CE2C50052AD11 /* BOXAuthorizationViewController.m */; };
 		599B19631E4BE67600709C27 /* BOXOAuth2Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FAD999172CE2C50052AD11 /* BOXOAuth2Session.m */; };
 		599B19641E4BE67600709C27 /* BOXParallelOAuth2Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E4CA6F5D173F1C750089680F /* BOXParallelOAuth2Session.m */; };
 		599B19651E4BE67600709C27 /* BOXAbstractSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 862EF28A1B1FA12B0044526F /* BOXAbstractSession.m */; };
@@ -391,7 +390,6 @@
 		599B1A871E4BE6DD00709C27 /* BOXContentSDKErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = E4F4693517264439000CAD86 /* BOXContentSDKErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		599B1A881E4BE6DD00709C27 /* BOXContentSDKConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E4CF273516DC4A5100F5979E /* BOXContentSDKConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		599B1A891E4BE6DD00709C27 /* BOXLog.h in Headers */ = {isa = PBXBuildFile; fileRef = E4C3289716D6F447002DC905 /* BOXLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		599B1A9B1E4C01B300709C27 /* BOXAuthorizationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E4FAD996172CE2C50052AD11 /* BOXAuthorizationViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		599B1A9C1E4C01B300709C27 /* BOXOAuth2Session.h in Headers */ = {isa = PBXBuildFile; fileRef = E4FAD998172CE2C50052AD11 /* BOXOAuth2Session.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		599B1A9D1E4C01B300709C27 /* BOXParallelOAuth2Session.h in Headers */ = {isa = PBXBuildFile; fileRef = E4CA6F5C173F1C750089680F /* BOXParallelOAuth2Session.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		59AB005E1A3943BD005A6D89 /* BOXFolderPaginatedItemsRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59AB005D1A3943BD005A6D89 /* BOXFolderPaginatedItemsRequestTests.m */; };
@@ -982,8 +980,6 @@
 		E4FAD983172CE2C50052AD11 /* BOXISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOXISO8601DateFormatter.m; sourceTree = "<group>"; };
 		E4FAD984172CE2C50052AD11 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		E4FAD985172CE2C50052AD11 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		E4FAD996172CE2C50052AD11 /* BOXAuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOXAuthorizationViewController.h; sourceTree = "<group>"; };
-		E4FAD997172CE2C50052AD11 /* BOXAuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOXAuthorizationViewController.m; sourceTree = "<group>"; };
 		E4FAD998172CE2C50052AD11 /* BOXOAuth2Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOXOAuth2Session.h; sourceTree = "<group>"; };
 		E4FAD999172CE2C50052AD11 /* BOXOAuth2Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOXOAuth2Session.m; sourceTree = "<group>"; };
 		E4FAD99D172CE2C50052AD11 /* BOXAPIAuthenticatedOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOXAPIAuthenticatedOperation.h; sourceTree = "<group>"; };
@@ -1780,8 +1776,6 @@
 		E4FAD995172CE2C50052AD11 /* OAuth2 */ = {
 			isa = PBXGroup;
 			children = (
-				E4FAD996172CE2C50052AD11 /* BOXAuthorizationViewController.h */,
-				E4FAD997172CE2C50052AD11 /* BOXAuthorizationViewController.m */,
 				E4FAD998172CE2C50052AD11 /* BOXOAuth2Session.h */,
 				E4FAD999172CE2C50052AD11 /* BOXOAuth2Session.m */,
 				E4CA6F5C173F1C750089680F /* BOXParallelOAuth2Session.h */,
@@ -2004,7 +1998,6 @@
 				599B1A871E4BE6DD00709C27 /* BOXContentSDKErrors.h in Headers */,
 				599B1A881E4BE6DD00709C27 /* BOXContentSDKConstants.h in Headers */,
 				599B1A891E4BE6DD00709C27 /* BOXLog.h in Headers */,
-				599B1A9B1E4C01B300709C27 /* BOXAuthorizationViewController.h in Headers */,
 				599B1A9C1E4C01B300709C27 /* BOXOAuth2Session.h in Headers */,
 				599B1A9D1E4C01B300709C27 /* BOXParallelOAuth2Session.h in Headers */,
 				596598EB1E9D7F3000431413 /* BOXURLSessionManager.h in Headers */,
@@ -2121,6 +2114,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -2350,7 +2344,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1560870A1F7C7F7B008DCD2C /* BOXUserAvatarImageView.m in Sources */,
-				599B19621E4BE67600709C27 /* BOXAuthorizationViewController.m in Sources */,
 				599B19631E4BE67600709C27 /* BOXOAuth2Session.m in Sources */,
 				599B19641E4BE67600709C27 /* BOXParallelOAuth2Session.m in Sources */,
 				94D51FC3207D9347008341A7 /* BOXRepresentationInfoRequest.m in Sources */,

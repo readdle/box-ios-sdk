@@ -3,7 +3,7 @@
 //  BoxContentSDK
 //
 
-#import "BOXRequest_Private.h"
+#import <BoxContentSDK/BOXRequest_Private.h>
 
 @interface BOXBookmarkCreateRequest : BOXRequest
 

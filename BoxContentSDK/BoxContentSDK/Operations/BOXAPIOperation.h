@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXContentSDKConstants.h"
-#import "BOXURLSessionManager.h"
+#import <BoxContentSDK/BOXContentSDKConstants.h>
+#import <BoxContentSDK/BOXURLSessionManager.h>
 
 @class BOXAbstractSession;
 

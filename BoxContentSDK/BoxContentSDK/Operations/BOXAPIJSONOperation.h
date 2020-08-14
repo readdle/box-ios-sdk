@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BOXAPIAuthenticatedOperation.h"
+#import <BoxContentSDK/BOXAPIAuthenticatedOperation.h>
 
 /**
  * BOXAPIJSONOperation is a concrete BOXAPIAuthenticatedOperation subclass. This operation

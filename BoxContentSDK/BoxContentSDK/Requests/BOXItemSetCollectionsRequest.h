@@ -3,7 +3,7 @@
 //  BoxContentSDK
 //
 
-#import "BOXRequest.h"
+#import <BoxContentSDK/BOXRequest.h>
 
 /*
  * This request associates a BOXItem to a list of collections. The return value is the updated BOXItem.

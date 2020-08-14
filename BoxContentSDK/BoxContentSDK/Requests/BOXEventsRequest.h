@@ -3,7 +3,7 @@
 //  BoxContentSDK
 //
 
-#import "BOXRequest.h"
+#import <BoxContentSDK/BOXRequest.h>
 
 typedef NS_ENUM(NSUInteger, BOXEventsStreamType) {
     BOXEventsStreamTypeAll = 0,

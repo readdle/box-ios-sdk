@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Box. All rights reserved.
 //
 
-#import "BOXContentClient_Private.h"
+#import <BoxContentSDK/BOXContentClient_Private.h>
 
 @class BOXSharedItemRequest;
 @class BOXFolderShareRequest;

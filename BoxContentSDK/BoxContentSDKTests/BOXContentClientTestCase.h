@@ -8,7 +8,7 @@
 
 @import BoxContentSDKTestFramework;
 
-#import "BOXAPIAccessTokenDelegate.h"
+#import <BoxContentSDK/BOXAPIAccessTokenDelegate.h>
 
 @interface BOXContentClientTestCase : BOXContentSDKTestCase <BOXAPIAccessTokenDelegate>
 

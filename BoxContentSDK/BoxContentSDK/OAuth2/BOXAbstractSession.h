@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXAPIQueueManager.h"
-#import "BOXUser.h"
-#import "BOXURLSessionManager.h"
+#import <BoxContentSDK/BOXAPIQueueManager.h>
+#import <BoxContentSDK/BOXUser.h>
+#import <BoxContentSDK/BOXURLSessionManager.h>
 
 #pragma mark Notifications
 extern NSString *const BOXSessionDidBecomeAuthenticatedNotification;

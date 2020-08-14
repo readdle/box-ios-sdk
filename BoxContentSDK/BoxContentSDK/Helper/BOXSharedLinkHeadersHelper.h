@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXSharedLinkStorageProtocol.h"
+#import <BoxContentSDK/BOXSharedLinkStorageProtocol.h>
 
 @class BOXContentClient;
 

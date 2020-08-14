@@ -4,7 +4,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NSDate+BOXContentSDKAdditions.h"
+#import <BoxContentSDK/NSDate+BOXContentSDKAdditions.h>
 
 @class BOXCollaboration;
 @class BOXFile;

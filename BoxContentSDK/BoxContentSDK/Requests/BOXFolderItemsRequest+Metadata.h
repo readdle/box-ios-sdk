@@ -6,8 +6,8 @@
 //  Copyright © 2018 Box. All rights reserved.
 //
 
-#import "BOXFolderItemsRequest.h"
-#import "BOXContentSDKConstants.h"
+#import <BoxContentSDK/BOXFolderItemsRequest.h>
+#import <BoxContentSDK/BOXContentSDKConstants.h>
 
 @interface BOXFolderItemsRequest (Metadata)
 

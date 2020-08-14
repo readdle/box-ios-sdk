@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Box. All rights reserved.
 //
 
-#import "BOXModel.h"
-#import "BOXUser.h"
+#import <BoxContentSDK/BOXModel.h>
+#import <BoxContentSDK/BOXUser.h>
 
 @interface BOXFileVersionMini : BOXModel
 

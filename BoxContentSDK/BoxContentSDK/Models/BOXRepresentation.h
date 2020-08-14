@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXContentSDKConstants.h"
+#import <BoxContentSDK/BOXContentSDKConstants.h>
 
 @interface BOXRepresentation : NSObject
 

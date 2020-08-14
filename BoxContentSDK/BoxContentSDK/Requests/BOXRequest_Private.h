@@ -3,16 +3,16 @@
 //  BoxContentSDK
 //
 
-#import "BOXAPIDataOperation.h"
-#import "BOXAPIJSONOperation.h"
-#import "BOXAPIJSONPatchOperation.h"
-#import "BOXStreamOperation.h"
-#import "BOXAPIHeadOperation.h"
-#import "BOXAPIOAuth2ToJSONOperation.h"
+#import <BoxContentSDK/BOXAPIDataOperation.h>
+#import <BoxContentSDK/BOXAPIJSONOperation.h>
+#import <BoxContentSDK/BOXAPIJSONPatchOperation.h>
+#import <BoxContentSDK/BOXStreamOperation.h>
+#import <BoxContentSDK/BOXAPIHeadOperation.h>
+#import <BoxContentSDK/BOXAPIOAuth2ToJSONOperation.h>
 
-#import "BOXRequest.h"
-#import "BOXContentSDKConstants.h"
-#import "BOXContentCacheClientProtocol.h"
+#import <BoxContentSDK/BOXRequest.h>
+#import <BoxContentSDK/BOXContentSDKConstants.h>
+#import <BoxContentSDK/BOXContentCacheClientProtocol.h>
 
 @class BOXAPIQueueManager;
 

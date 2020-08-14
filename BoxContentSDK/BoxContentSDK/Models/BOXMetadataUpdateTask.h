@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXMetadataKeyValue.h"
+#import <BoxContentSDK/BOXMetadataKeyValue.h>
 
 /**
  * ENUM that defines all possible operations available to the BOXMetadataUpdateTask class.

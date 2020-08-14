@@ -4,7 +4,7 @@
 //
 //  Copyright (c) 2014 Box. All rights reserved.
 //
-#import "BOXAPIAccessTokenDelegate.h"
+#import <BoxContentSDK/BOXAPIAccessTokenDelegate.h>
 
 @class BOXAbstractSession;
 @class BOXUser;

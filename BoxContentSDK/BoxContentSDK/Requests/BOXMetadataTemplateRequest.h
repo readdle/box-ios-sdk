@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXRequest.h"
+#import <BoxContentSDK/BOXRequest.h>
 
 /**
  * BOXMetadataTemplateRequest is a concrete implementation of BOXRequest that allows users to

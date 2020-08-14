@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Box. All rights reserved.
 //
 
-#import "BOXRequest.h"
+#import <BoxContentSDK/BOXRequest.h>
 
 /**
  * BOXMetadataDeleteRequest is a concrete implementation of BOXRequest that allows users to

@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXAppToAppFileMetadata.h"
+#import <BoxContentSDK/BOXAppToAppFileMetadata.h>
 
 @class BOXAppToAppApplication;
 

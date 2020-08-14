@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BOXAPIQueueManager.h"
-#import "BOXUser.h"
-#import "BOXAbstractSession.h"
+#import <BoxContentSDK/BOXAPIQueueManager.h>
+#import <BoxContentSDK/BOXUser.h>
+#import <BoxContentSDK/BOXAbstractSession.h>
 
 /**
  * BOXOAuth2Session is an abstract class you can use to encapsulate managing a set of OAuth2

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "BOXUser.h"
-#import "BOXContentClient.h"
+#import <BoxContentSDK/BOXUser.h>
+#import <BoxContentSDK/BOXContentClient.h>
 
 @interface BOXUserAvatarImageView : UIImageView
 

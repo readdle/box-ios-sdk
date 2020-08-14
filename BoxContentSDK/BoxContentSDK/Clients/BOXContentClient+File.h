@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Box. All rights reserved.
 //
 
-#import "BOXContentSDKConstants.h"
-#import "BOXContentClient.h"
-#import "BOXAPIOperation.h"
+#import <BoxContentSDK/BOXContentSDKConstants.h>
+#import <BoxContentSDK/BOXContentClient.h>
+#import <BoxContentSDK/BOXAPIOperation.h>
 
 @class BOXFileRequest;
 @class BOXFileCopyRequest;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXAPIAccessTokenDelegate.h"
+#import <BoxContentSDK/BOXAPIAccessTokenDelegate.h>
 
 @class BOXAPIOperation, BOXAPIOAuth2ToJSONOperation, BOXAbstractSession;
 

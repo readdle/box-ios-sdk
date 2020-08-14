@@ -4,8 +4,8 @@
 //
 //
 
-#import "BOXModel.h"
-#import "BOXEnterprise.h"
+#import <BoxContentSDK/BOXModel.h>
+#import <BoxContentSDK/BOXEnterprise.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

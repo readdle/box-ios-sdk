@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Box. All rights reserved.
 //
 
-#import "BOXContentClient.h"
-#import "BOXContentSDKConstants.h"
+#import <BoxContentSDK/BOXContentClient.h>
+#import <BoxContentSDK/BOXContentSDKConstants.h>
 
 @class BOXUserRequest;
 @class BOXUserAvatarRequest;

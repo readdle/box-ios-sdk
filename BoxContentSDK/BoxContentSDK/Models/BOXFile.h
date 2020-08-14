@@ -4,8 +4,8 @@
 //
 //
 
-#import "BOXItem.h"
-#import "BOXFileVersion.h"
+#import <BoxContentSDK/BOXItem.h>
+#import <BoxContentSDK/BOXFileVersion.h>
 
 @class BOXFileLock;
 

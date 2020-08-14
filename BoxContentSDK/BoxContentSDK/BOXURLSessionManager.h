@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BOXURLSessionCacheClient.h"
+#import <BoxContentSDK/BOXURLSessionCacheClient.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

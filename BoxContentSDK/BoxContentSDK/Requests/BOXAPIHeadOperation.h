@@ -6,7 +6,7 @@
 //  Copyright © 2016 Box. All rights reserved.
 //
 
-#import "BOXAPIAuthenticatedOperation.h"
+#import <BoxContentSDK/BOXAPIAuthenticatedOperation.h>
 
 typedef void (^BOXAPIHeaderSuccessBlock)(NSURLRequest *request, NSHTTPURLResponse *response);
 typedef void (^BOXAPIHeaderFailureBlock)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error);

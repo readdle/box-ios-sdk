@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 Box. All rights reserved.
 //
 
-#import "BOXModel.h"
-
-#import "BOXISO8601DateFormatter.h"
+#import <BoxContentSDK/BOXModel.h>
+#import <BoxContentSDK/BOXISO8601DateFormatter.h>
 
 @implementation BOXModel
 

@@ -34,7 +34,7 @@ long long const BOX_TERABYTE = BOX_GIGABYTE * 1024;
 		double dSize = fileSize / (double)BOX_KILOBYTE;
 		result_str = [NSString stringWithFormat:NSLocalizedString(@"%1.1f KB", @"File size in kilobytes (example: 1 KB)"), dSize];
 	} else if(fileSize > 0) {
-        result_str = [NSString stringWithFormat:NSLocalizedString(@"%1.1f B", @"File size in bytes (example: 1 B)"), fileSize];
+        result_str = [NSString stringWithFormat:NSLocalizedString(@"%1.1lld B", @"File size in bytes (example: 1 B)"), fileSize];
     } else {
 		result_str = NSLocalizedString(@"Empty", @"File size 0 bytes");
 	}

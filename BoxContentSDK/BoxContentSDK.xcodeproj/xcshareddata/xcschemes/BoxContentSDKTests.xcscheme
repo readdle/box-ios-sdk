@@ -66,6 +66,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "15605D841A20132200C5EE5A"
+            BuildableName = "BoxContentSDKTests.xctest"
+            BlueprintName = "BoxContentSDKTests"
+            ReferencedContainer = "container:BoxContentSDK.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

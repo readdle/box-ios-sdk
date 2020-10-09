@@ -531,6 +531,13 @@
 			remoteGlobalIDString = 599B19591E4BE65700709C27;
 			remoteInfo = BoxContentSDK;
 		};
+		736DC98125307F0400857C1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E470433316D41DC500FED29A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 599B19591E4BE65700709C27;
+			remoteInfo = BoxContentSDK;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -2174,6 +2181,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				736DC98225307F0400857C1C /* PBXTargetDependency */,
 			);
 			name = BoxContentSDKTestFramework;
 			productName = BoxContentSDKTestFrameworkX;
@@ -2638,6 +2646,11 @@
 			target = 599B19591E4BE65700709C27 /* BoxContentSDK */;
 			targetProxy = 599B1A8A1E4BE9A500709C27 /* PBXContainerItemProxy */;
 		};
+		736DC98225307F0400857C1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 599B19591E4BE65700709C27 /* BoxContentSDK */;
+			targetProxy = 736DC98125307F0400857C1C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -2943,6 +2956,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Box.BoxContentSDKFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2984,6 +2998,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Box.BoxContentSDKFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";

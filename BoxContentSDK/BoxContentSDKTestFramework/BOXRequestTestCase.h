@@ -7,8 +7,8 @@
 //
 
 //#import <BoxContentSDK/BOXContentSDKTestCase.h>
-#import <BoxContentSDK/BoxContentSDKTestFramework.h>
-#import <BoxContentSDK/BOXCannedResponse.h>
+#import <BoxContentSDKTestFramework/BoxContentSDKTestFramework.h>
+#import <BoxContentSDKTestFramework/BOXCannedResponse.h>
 
 @class BOXRequest;
 

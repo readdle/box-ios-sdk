@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Box. All rights reserved.
 //
 
-#import <BoxContentSDK/BOXCannedResponse.h>
+#import <BoxContentSDKTestFramework/BOXCannedResponse.h>
 
 @interface BOXCannedURLProtocol : NSURLProtocol
 

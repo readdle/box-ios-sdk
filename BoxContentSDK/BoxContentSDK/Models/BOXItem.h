@@ -150,7 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The folder that contains this item.
  */
-@property (nonatomic, readwrite, strong, nullable) BOXFolderMini *parentFolder;
+@property (nonatomic, readwrite, strong) BOXFolderMini * _Nullable parentFolder;
 
 /**
  *  Whether this item is deleted or not.

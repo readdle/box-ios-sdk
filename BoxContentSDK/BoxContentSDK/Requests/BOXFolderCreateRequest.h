@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BOXFolderCreateRequest : BOXRequestWithSharedLinkHeader
+@interface BOXFolderCreateRequest : BOXRequestWithSharedLinkHeader <BOXBackgroundRequestProtocol>
 
 @property (nonatomic, readwrite, strong) NSString *folderName;
 @property (nonatomic, readwrite, strong) NSString *parentFolderID;

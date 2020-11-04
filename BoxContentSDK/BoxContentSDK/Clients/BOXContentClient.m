@@ -481,9 +481,13 @@ static BOXContentClient *defaultInstance = nil;
     [[BOXURLSessionManager sharedInstance] reconnectWithBackgroundSessionIdFromExtension:backgroundSessionId completion:completionBlock];
 }
 
-+ (NSArray <NSString *> *)associateIdsOfBackgroundSessionId:(NSString *)backgroundSessionId userId:(NSString *)userId error:(NSError **)error
++ (NSArray <NSString *> * _Nullable)associateIdsOfBackgroundSessionId:(NSString * _Nonnull)backgroundSessionId
+                                                               userId:(NSString * _Nonnull)userId
+                                                                error:(NSError * _Nullable * _Nullable)error
 {
-    return [[BOXURLSessionManager sharedInstance] associateIdsOfBackgroundSessionId:backgroundSessionId userId:userId error:error];
+    return [[BOXURLSessionManager sharedInstance] associateIdsOfBackgroundSessionId:backgroundSessionId
+                                                                             userId:userId
+                                                                              error:error];
 }
 
 + (NSString *)backgroundSessionIdentifier
@@ -491,14 +495,25 @@ static BOXContentClient *defaultInstance = nil;
     return [[BOXURLSessionManager sharedInstance] backgroundSessionIdentifier];
 }
 
-+ (NSArray <NSString *> *)onGoingBackgroundSessionIDsWithError:(NSError **)error
++ (NSArray <NSString *> * _Nullable)backgroundSessionIDsOfUserID:(NSString * _Nonnull)userID
+                                                           error:(NSError * _Nullable * _Nullable)error
 {
-    return [[BOXURLSessionManager sharedInstance] onGoingBackgroundSessionIDsWithError:error];
+    return [[BOXURLSessionManager sharedInstance] backgroundSessionIDsOfUserID:userID
+                                                                         error:error];
 }
 
 + (NSArray <NSString *> *)backgroundSessionIDsReconnectedToAppWithError:(NSError **)error
 {
     return [[BOXURLSessionManager sharedInstance] backgroundSessionIDsReconnectedToAppWithError:error];
+}
+
++ (BOOL)cleanUpBackgroundSessionIfPossibleGivenUserID:(NSString * _Nonnull)userID
+                                  backgroundSessionID:(NSString * _Nonnull)backgroundSessionID
+                                                error:(NSError * _Nullable * _Nullable)error
+{
+    return [[BOXURLSessionManager sharedInstance] cleanUpBackgroundSessionIfPossibleGivenUserID:userID
+                                                                            backgroundSessionID:backgroundSessionID
+                                                                                          error:error];
 }
 
 #pragma mark - helper methods

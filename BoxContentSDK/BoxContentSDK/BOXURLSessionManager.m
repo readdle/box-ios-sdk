@@ -229,15 +229,6 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
                                                          rootCacheDir:rootCacheDir
                                             sharedContainerIdentifier:nil
                                                            completion:completionBlock];
-
-    //setting up previously reconnected background sessions
-    NSError *error = nil;
-    NSArray *extensionSessionIds = [self.cacheClient backgroundSessionIDsReconnectedToAppWithError:&error];
-    BOXAssert(error == nil, @"Failed to retrieve backgroundSessionIds from extensions with error %@", error);
-
-    for (NSString *extensionSessionId in extensionSessionIds) {
-        [self reconnectWithBackgroundSessionIdFromExtension:extensionSessionId completion:nil];
-    }
 }
 
 // Return string in the format $backgroundSessionIdentifierForMainApp_$randomString
@@ -294,9 +285,11 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
     }
 }
 
-- (NSArray <NSString *> *)onGoingBackgroundSessionIDsWithError:(NSError **)error
+- (NSArray <NSString *> * _Nullable)backgroundSessionIDsOfUserID:(NSString * _Nonnull)userID
+                                                           error:(NSError * _Nullable * _Nullable)error
 {
-    return [self.cacheClient onGoingBackgroundSessionIDsWithError:error];
+    return [self.cacheClient backgroundSessionIDsOfUserID:userID
+                                                    error:error];
 }
 
 - (NSArray <NSString *> *)backgroundSessionIDsReconnectedToAppWithError:(NSError **)error
@@ -546,21 +539,21 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
         }
         success = [self.cacheClient deleteCachedInfoForUserId:userId associateId:associateId error:&error];
 
-        if (success == YES) {
-            NSString *backgroundSessionId = backgroundSessionIdAndSessionTaskId.backgroundSessionId;
-            if (backgroundSessionId != nil && [backgroundSessionId isEqualToString:[self backgroundSessionIdentifier]] == NO) {
-                //this background session is not self.backgroundSession so we must be running inside the main app
-                //and this background session is from extension, clean it up if it has no more pending tasks
-                BOOL shouldCleanUp = NO;
-                @synchronized (self.backgroundSessionIdToSessionTask[backgroundSessionId]) {
-                    NSMutableDictionary *sessionTask = self.backgroundSessionIdToSessionTask[backgroundSessionId];
-                    shouldCleanUp = sessionTask.count == 0;
-                }
-                if (shouldCleanUp == YES) {
-                    success = [self cleanUpBackgroundSessionId:backgroundSessionId error:&error];
-                    NSURLSession *backgroundSession = [self backgroundSessionForId:backgroundSessionId];
-                    [backgroundSession invalidateAndCancel];
-                }
+        NSString *backgroundSessionID = backgroundSessionIdAndSessionTaskId.backgroundSessionId;
+        if (success == YES && backgroundSessionID != nil) {
+            [self cleanUpBackgroundSessionIfPossibleGivenUserID:userId
+                                            backgroundSessionID:backgroundSessionID
+                                                          error:&error];
+            // Note: don't use return value of cleanUpBackgroundSessionIfPossibleGivenID:error:
+            // since the background session might not be possible to clean up yet,
+            // return value will be NO, error will be nil
+            // We care about the error if clean up fails.
+            success = !error || ([error.domain isEqualToString:BOXContentSDKErrorDomain]
+                                 && (error.code == BOXContentSDKURLSessionCannotCleanUpCurrentBackgroundSession
+                                     || error.code == BOXContentSDKURLSessionCannotCleanUpBackgroundSessionWithActiveTasks
+                                     || error.code == BOXContentSDKURLSessionCannotCleanUpBackgroundSessionWithTasks));
+            if (success == YES) {
+                error = nil;
             }
         }
     }
@@ -569,6 +562,73 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
     }
     
     return success;
+}
+
+- (BOOL)cleanUpBackgroundSessionIfPossibleGivenUserID:(NSString * _Nonnull)userID
+                                  backgroundSessionID:(NSString * _Nonnull)backgroundSessionID
+                                                error:(NSError * _Nullable * _Nullable)error
+{
+    // Do not allow cleaning up current background session which should live for the life-time of current process.
+    // The background sessions which should be cleaned up are the ones reconnected to the
+    // current process from a terminated process, thus, no longer are used to create new tasks;
+    // and we can wait for all their current tasks to complete to clean them up
+    //
+    // E.g. in the main app, and we have this background session reconnected from a terminated extension,
+    // clean this session up if it has no more tasks associated with it.
+
+    // Check if the background session to clean up is the current background session
+    if ([backgroundSessionID isEqualToString:[self backgroundSessionIdentifier]]) {
+        if (error != nil) {
+            *error = [[NSError alloc] initWithDomain:BOXContentSDKErrorDomain
+                                                code:BOXContentSDKURLSessionCannotCleanUpCurrentBackgroundSession
+                                            userInfo:nil];
+        }
+        return NO;
+    }
+
+    // Check if there are more active tasks
+    @synchronized (self.backgroundSessionIdToSessionTask) {
+        if (self.backgroundSessionIdToSessionTask[backgroundSessionID].count > 0) {
+            if (error != nil) {
+                *error = [[NSError alloc] initWithDomain:BOXContentSDKErrorDomain
+                                                    code:BOXContentSDKURLSessionCannotCleanUpBackgroundSessionWithActiveTasks
+                                                userInfo:nil];
+            }
+            return NO;
+        }
+    }
+
+    // Clean up cache for background session and invalidate it
+    if ([self cleanUpOnGoingBackgroundSessionID:backgroundSessionID error:error]) {
+
+        // Invalidate background session
+        NSURLSession *backgroundSession = [self backgroundSessionForId:backgroundSessionID];
+        [backgroundSession invalidateAndCancel];
+
+        // Check if there are more tasks associated with the background session.
+        // The session might no longer be active, but if there are tasks associated with it
+        // whose requests have not completed, we don't clean up its remaining cache
+        NSArray *associateIDs = [self associateIdsOfBackgroundSessionId:backgroundSessionID
+                                                                 userId:userID
+                                                                  error:error];
+        if (associateIDs.count > 0) {
+            if (error != nil) {
+                *error = [[NSError alloc] initWithDomain:BOXContentSDKErrorDomain
+                                                    code:BOXContentSDKURLSessionCannotCleanUpBackgroundSessionWithTasks
+                                                userInfo:nil];
+            }
+            return NO;
+        }
+
+        // Clean up background session's remaing cached information
+        if ([self.cacheClient cleanUpBackgroundSessionIndexGivenUserID:userID
+                                                   backgroundSessionID:backgroundSessionID
+                                                                 error:error]) {
+            return [self.cacheClient cleanUpExtensionBackgroundSessionId:backgroundSessionID
+                                                                   error:error];
+        }
+    }
+    return YES;
 }
 
 - (void)cancelAndCleanUpBackgroundSessionTasksForUserId:(NSString *)userId error:(NSError **)outError
@@ -623,15 +683,19 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
     }
 }
 
-- (NSArray <NSString *> *)associateIdsOfBackgroundSessionId:(NSString *)backgroundSessionId userId:(NSString *)userId error:(NSError **)error
+- (NSArray <NSString *> * _Nullable)associateIdsOfBackgroundSessionId:(NSString * _Nonnull)backgroundSessionId
+                                                               userId:(NSString * _Nonnull)userId
+                                                                error:(NSError * _Nullable * _Nullable)error
 {
-    return [self.cacheClient associateIdsOfBackgroundSessionId:backgroundSessionId userId:userId error:error];
+    return [self.cacheClient associateIdsOfBackgroundSessionId:backgroundSessionId
+                                                        userId:userId
+                                                         error:error];
 }
 
 #pragma mark - Private Helpers
 
-- (BOOL)cleanUpBackgroundSessionId:(NSString *)backgroundSessionId
-                             error:(NSError **)error
+- (BOOL)cleanUpOnGoingBackgroundSessionID:(NSString *)backgroundSessionId
+                                    error:(NSError **)error
 {
     @synchronized (self.backgroundSessionIdToSessionTask) {
         [self.backgroundSessionIdToSessionTask removeObjectForKey:backgroundSessionId];

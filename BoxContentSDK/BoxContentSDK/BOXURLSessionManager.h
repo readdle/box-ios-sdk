@@ -93,6 +93,9 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend;
  * This method needs to be called once in main app to set up the manager to be ready to
  * support background upload/download tasks.
  * If this method has not been called, all background task creations will fail
+ * Note: This method does not reconnect to previously reconnected background sessions. To do that,
+ *  you can call backgroundSessionIDsReconnectedToAppWithError: to get the list of previously
+ *  reconnected background sessions, then call reconnectWithBackgroundSessionIdFromExtension:completion:
  *
  * @param delegate          used for encrypting/decrypting metadata cached for background session tasks
  * @param rootCacheDir      root directory for caching background session tasks' data
@@ -248,6 +251,21 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend;
 - (BOOL)cleanUpBackgroundSessionTaskIfExistForUserId:(NSString *)userId associateId:(NSString *)associateId error:(NSError **)error;
 
 /**
+ * Clean up background session from cache and invalidate it if possible,
+ * i.e. if the background session to be cleaned up is not the current
+ * background session and has no pending tasks
+ *
+ * @param userID    userID that this session belongs to
+ * @param backgroundSessionID   background session ID to clean up
+ * @param error error cleaning up this background session
+ *
+ * @return YES if successfully clean up, NO otherwise
+*/
+- (BOOL)cleanUpBackgroundSessionIfPossibleGivenUserID:(NSString * _Nonnull)userID
+                                  backgroundSessionID:(NSString * _Nonnull)backgroundSessionID
+                                                error:(NSError * _Nullable * _Nullable)error;
+
+/**
  * Asynchronously calls a completion callback with all background upload, and download tasks in a session.
  */
 - (void)pendingBackgroundDownloadUploadSessionTasks:(void (^)(NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks))completion;
@@ -271,7 +289,9 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend;
  *
  * @return NSArray of associateIds, nil if error
  */
-- (NSArray <NSString *> *)associateIdsOfBackgroundSessionId:(NSString *)backgroundSessionId userId:(NSString *)userId error:(NSError **)error;
+- (NSArray <NSString *> * _Nullable)associateIdsOfBackgroundSessionId:(NSString * _Nonnull)backgroundSessionId
+                                                               userId:(NSString * _Nonnull)userId
+                                                                error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Background session ID of background session
@@ -279,10 +299,10 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend;
 - (NSString *)backgroundSessionIdentifier;
 
 /**
- * Return currrently active background session IDs
-*/
-- (NSArray <NSString *> *)onGoingBackgroundSessionIDsWithError:(NSError **)error;
-
+ * Return existing background session IDs
+ */
+- (NSArray <NSString *> * _Nullable)backgroundSessionIDsOfUserID:(NSString * _Nonnull)userID
+                                                           error:(NSError * _Nullable * _Nullable)error;
 /**
  * Return all background session IDs created by the extensions
  * and reconnected to the app

@@ -56,7 +56,7 @@ typedef void (^BOXAuthCancelBlock)(BOXAuthorizationViewController *authorization
 
 @synthesize authorizeURL = _authorizeURL;
 
-static NSString *viewPortScriptString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); meta.setAttribute('initial-scale', '1.0'); meta.setAttribute('maximum-scale', '1.0'); meta.setAttribute('minimum-scale', '1.0'); meta.setAttribute('user-scalable', 'no'); document.getElementsByTagName('head')[0].appendChild(meta);";
+//static NSString *viewPortScriptString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); meta.setAttribute('initial-scale', '1.0'); meta.setAttribute('maximum-scale', '1.0'); meta.setAttribute('minimum-scale', '1.0'); meta.setAttribute('user-scalable', 'no'); document.getElementsByTagName('head')[0].appendChild(meta);";
 static NSString *disableSelectionScriptString = @"document.documentElement.style.webkitUserSelect='none';";
 static NSString *disableCalloutScriptString = @"document.documentElement.style.webkitTouchCallout='none';";
 
@@ -109,10 +109,11 @@ static NSString *disableCalloutScriptString = @"document.documentElement.style.w
 - (void)loadView
 {
     WKUserContentController *controller = [WKUserContentController new];
-    WKUserScript *viewPortScript = [[WKUserScript alloc] initWithSource:viewPortScriptString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    // pastey: commented out installation of this script as it causes huge visual issues on device rotation
+//    WKUserScript *viewPortScript = [[WKUserScript alloc] initWithSource:viewPortScriptString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     WKUserScript *disableSelectionScript = [[WKUserScript alloc] initWithSource:disableSelectionScriptString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     WKUserScript *disableCalloutScript = [[WKUserScript alloc] initWithSource:disableCalloutScriptString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-    [controller addUserScript:viewPortScript];
+//    [controller addUserScript:viewPortScript];
     [controller addUserScript:disableSelectionScript];
     [controller addUserScript:disableCalloutScript];
 

@@ -249,7 +249,7 @@ static NSString *disableCalloutScriptString = @"document.documentElement.style.w
 - (void)loadAuthorizationURL
 {
     if (self.activityIndicator == nil) {
-        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
         self.activityIndicator.hidesWhenStopped = YES;
         [self.view addSubview:self.activityIndicator];
     }
@@ -465,11 +465,8 @@ static NSString *disableCalloutScriptString = @"document.documentElement.style.w
 
     if ([[[challenge protectionSpace] authenticationMethod] isEqualToString:NSURLAuthenticationMethodServerTrust]) {
         BOXLog(@"Server trust authentication challenge");
-        SecTrustResultType trustResult = kSecTrustResultOtherError;
-        OSStatus status = SecTrustEvaluate([[challenge protectionSpace] serverTrust], &trustResult);
-
         // Allow a certificate if its status was evaluated successfully and the result is that it should be trusted
-        BOOL shouldTrustServer = (status == errSecSuccess && (trustResult == kSecTrustResultProceed || trustResult == kSecTrustResultUnspecified));
+        bool shouldTrustServer = SecTrustEvaluateWithError([[challenge protectionSpace] serverTrust], NULL);
 
         if (shouldTrustServer) {
             SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];

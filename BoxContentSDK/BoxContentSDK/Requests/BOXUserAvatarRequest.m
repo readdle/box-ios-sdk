@@ -107,8 +107,7 @@
         NSOutputStream *outputStream = self.outputStream;
         dataOperation.successBlock = ^(NSString *modelID, long long expectedTotalBytes) {
             NSData *data = [outputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
-            UIImage *image = [UIImage imageWithData:data
-                                              scale:[[UIScreen mainScreen] scale]];
+            UIImage *image = [UIImage imageWithData:data];
             if ([self.cacheClient respondsToSelector:@selector(cacheUserAvatarRequest:withAvatar:error:)]) {
                 [self.cacheClient cacheUserAvatarRequest:self
                                               withAvatar:image

@@ -124,7 +124,7 @@
                 image = [UIImage imageWithContentsOfFile:localPath];
             } else {
                 NSData *data = [outputStream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
-                image = [UIImage imageWithData:data scale:[[UIScreen mainScreen] scale]];
+                image = [UIImage imageWithData:data];
             }
             [BOXDispatchHelper callCompletionBlock:^{
                 completionBlock(image, nil);

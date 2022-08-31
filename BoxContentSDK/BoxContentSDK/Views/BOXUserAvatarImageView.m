@@ -177,7 +177,16 @@ typedef enum {
     }
     CGRect rect = CGRectZero;
     rect.size = size;
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0f);
+    CGFloat displayScale = 2;
+    
+    if (self.traitCollection.displayScale > 0) {
+        displayScale = self.traitCollection.displayScale;
+    }
+    else if (UITraitCollection.currentTraitCollection.displayScale > 0) {
+        displayScale = UITraitCollection.currentTraitCollection.displayScale;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, displayScale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetFillColorWithColor(context, backgroundColor.CGColor);

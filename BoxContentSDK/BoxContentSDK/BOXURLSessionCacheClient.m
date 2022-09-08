@@ -52,8 +52,8 @@
 {
     if (self = [self init])
     {
-        self.userId = [aDecoder decodeObjectForKey:@"userId"];
-        self.associateId = [aDecoder decodeObjectForKey:@"associateId"];
+        self.userId = [aDecoder decodeObjectOfClass:NSString.class forKey:@"userId"];
+        self.associateId = [aDecoder decodeObjectOfClass:NSString.class forKey:@"associateId"];
     }
     return self;
 }

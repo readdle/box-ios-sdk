@@ -29,7 +29,7 @@
 
 @end
 
-@interface BOXUserIdAndAssociateId : NSObject
+@interface BOXUserIdAndAssociateId : NSObject <NSSecureCoding>
 @property (nonatomic, copy, readwrite) NSString *userId;
 @property (nonatomic, copy, readwrite) NSString *associateId;
 - (id)initWithUserId:(NSString *)userId associateId:(NSString *)associateId;
@@ -62,6 +62,10 @@
 {
     [aCoder encodeObject:self.userId forKey:@"userId"];
     [aCoder encodeObject:self.associateId forKey:@"associateId"];
+}
+
++ (BOOL)supportsSecureCoding {
+    return YES;
 }
 
 @end
@@ -263,7 +267,17 @@ backgroundSessionId:(NSString *)backgroundSessionId
         return NO;
     }
     
-    NSData *data = response == nil ? nil : [NSKeyedArchiver archivedDataWithRootObject:response];
+    NSError *archiverError;
+    NSData *data = response == nil ? nil : [NSKeyedArchiver archivedDataWithRootObject:response
+                                                                 requiringSecureCoding:NO
+                                                                                 error:&archiverError];
+    if (archiverError) {
+        if (error != nil) {
+            *error = archiverError;
+        }
+        
+        return NO;
+    }
     
     return [self cacheBackgroundSessionId:backgroundSessionId
                             sessionTaskId:sessionTaskId
@@ -286,7 +300,17 @@ backgroundSessionId:(NSString *)backgroundSessionId
         return NO;
     }
     
-    NSData *data = taskError == nil ? nil : [NSKeyedArchiver archivedDataWithRootObject:taskError];
+    NSError *archiverError;
+    NSData *data = taskError == nil ? nil : [NSKeyedArchiver archivedDataWithRootObject:taskError
+                                                                  requiringSecureCoding:NO
+                                                                                  error:&archiverError];
+    if (archiverError) {
+        if (error != nil) {
+            *error = archiverError;
+        }
+        
+        return NO;
+    }
     
     return [self cacheBackgroundSessionId:backgroundSessionId
                             sessionTaskId:sessionTaskId
@@ -456,16 +480,21 @@ backgroundSessionId:(NSString *)backgroundSessionId
         NSData *data = [self unencryptedDataAtFilePath:filePath];
 
         //parse decrypted data based on its file name
+        NSKeyedUnarchiver *const unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:error];
+        unarchiver.requiresSecureCoding = NO;
         if ([fileName isEqualToString:BOXURLSessionTaskCacheDestinationFilePath]) {
-            cachedInfo.destinationFilePath = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            cachedInfo.destinationFilePath = [unarchiver decodeObjectOfClass:NSString.class
+                                                                      forKey:NSKeyedArchiveRootObjectKey];
         } else if ([fileName isEqualToString:BOXURLSessionTaskCacheResumeData]) {
             cachedInfo.resumeData = data;
         } else if ([fileName isEqualToString:BOXURLSessionTaskCacheResponse]) {
-            cachedInfo.response = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            cachedInfo.response = [unarchiver decodeObjectOfClass:NSURLResponse.class
+                                                           forKey:NSKeyedArchiveRootObjectKey];
         } else if ([fileName isEqualToString:BOXURLSessionTaskCacheResponseData]) {
             cachedInfo.responseData = data;
         } else if ([fileName isEqualToString:BOXURLSessionTaskCacheError]) {
-            cachedInfo.error = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            cachedInfo.error = [unarchiver decodeObjectOfClass:NSError.class
+                                                        forKey:NSKeyedArchiveRootObjectKey];
         }
     }
     
@@ -481,7 +510,14 @@ backgroundSessionId:(NSString *)backgroundSessionId
 
     //decrypt data found at filePath
     NSData *data = [self unencryptedDataAtFilePath:filePath];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    NSError *error;
+    NSString *result = [NSKeyedUnarchiver unarchivedObjectOfClass:NSString.class fromData:data error:&error];
+    if (error) {
+        BOXLog(@"%s error: %@", __PRETTY_FUNCTION__, error);
+    }
+    
+    return result;
 }
 
 - (NSData *)responseDataForBackgroundSessionId:(NSString *)backgroundSessionId sessionTaskId:(NSUInteger)sessionTaskId
@@ -522,7 +558,15 @@ backgroundSessionId:(NSString *)backgroundSessionId
     //decrypt data found at filePath
     NSData *data = [self unencryptedDataAtFilePath:filePath];
     
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSError *error;
+    BOXUserIdAndAssociateId *result = [NSKeyedUnarchiver unarchivedObjectOfClass:BOXUserIdAndAssociateId.class
+                                                                        fromData:data
+                                                                           error:&error];
+    if (error) {
+        BOXLog(@"%s error: %@", __PRETTY_FUNCTION__, error);
+    }
+    
+    return result;
 }
 
 - (NSData *)unencryptedDataAtFilePath:(NSString *)filePath
@@ -754,7 +798,17 @@ backgroundSessionId:(NSString *)backgroundSessionId
                            error:(NSError **)error
 {
     BOXUserIdAndAssociateId *userIdAndAssociateId = [[BOXUserIdAndAssociateId alloc] initWithUserId:userId associateId:associateId];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userIdAndAssociateId];
+    NSError *archiverError;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userIdAndAssociateId
+                                         requiringSecureCoding:NO
+                                                         error:&archiverError];
+    if (archiverError) {
+        if (error != nil) {
+            *error = archiverError;
+        }
+        
+        return NO;
+    }
     
     return [self cacheBackgroundSessionId:backgroundSessionId
                             sessionTaskId:sessionTaskId

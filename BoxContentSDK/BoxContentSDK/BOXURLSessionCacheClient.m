@@ -88,7 +88,7 @@
             NSString *cacheDir = [cacheRootDir stringByAppendingPathComponent:BOXURLSessionTaskCacheDirectoryName];
             if ([[NSFileManager defaultManager] fileExistsAtPath:cacheDir isDirectory:&isDir] == NO || isDir == NO) {
                 NSError *error = nil;
-                BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:cacheDir
+                __unused BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:cacheDir
                                                          withIntermediateDirectories:YES
                                                                           attributes:nil
                                                                                error:&error];

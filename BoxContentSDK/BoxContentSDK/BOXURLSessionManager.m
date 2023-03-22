@@ -345,7 +345,7 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
             [pendingSessionTaskIds addObject:@(downloadTask.taskIdentifier)];
         }
         NSError *error = nil;
-        BOOL success = [self.cacheClient completeOnGoingSessionTasksForBackgroundSessionId:backgroundSessionId excludingSessionTaskIds:pendingSessionTaskIds error:&error];
+        __unused BOOL success = [self.cacheClient completeOnGoingSessionTasksForBackgroundSessionId:backgroundSessionId excludingSessionTaskIds:pendingSessionTaskIds error:&error];
         BOXAssert(success, @"Failed to complete tasks which are no longer in pending with error %@", error);
         self.didFinishSettingUpBackgroundSession = YES;
         
@@ -653,7 +653,7 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
         }
 
         if (finalError == nil) {
-            BOOL success = [self.cacheClient cleanUpForUserIdIfEmpty:userId error:&finalError];
+            __unused BOOL success = [self.cacheClient cleanUpForUserIdIfEmpty:userId error:&finalError];
             BOXAssert(success, @"Failed to clean up user id when cancelling and cleaning up tasks with error %@", finalError);
         }
 

@@ -178,7 +178,7 @@ NSArray * BOXQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 
 #pragma mark -
 
-static NSArray * BOXHTTPRequestSerializerObservedKeyPaths() {
+static NSArray * BOXHTTPRequestSerializerObservedKeyPaths(void) {
     static NSArray *_BOXHTTPRequestSerializerObservedKeyPaths = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -604,7 +604,7 @@ forHTTPHeaderField:(NSString *)field
 
 #pragma mark -
 
-static NSString * BOXCreateMultipartFormBoundary() {
+static NSString * BOXCreateMultipartFormBoundary(void) {
     return [NSString stringWithFormat:@"Boundary+%08X%08X", arc4random(), arc4random()];
 }
 

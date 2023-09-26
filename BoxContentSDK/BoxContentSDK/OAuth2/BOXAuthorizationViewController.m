@@ -379,13 +379,12 @@ static NSString *disableCalloutScriptString = @"document.documentElement.style.w
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
-    if (@available(iOS 11.0, *)) {
-        if (![WKWebView handlesURLScheme:request.URL.scheme]) {
-            // Open custom scheme links
-            [self openURL:request.URL];
-            decisionHandler(WKNavigationActionPolicyCancel);
-            return;
-        }
+
+    if (![WKWebView handlesURLScheme:request.URL.scheme]) {
+        // Open custom scheme links
+        [self openURL:request.URL];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
 
     decisionHandler(WKNavigationActionPolicyAllow);

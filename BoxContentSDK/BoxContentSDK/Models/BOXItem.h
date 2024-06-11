@@ -20,17 +20,17 @@
 /**
  *  A unique ID for use with Events.
  */
-@property (nonatomic, readwrite, strong) NSString *sequenceID;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified sequenceID;
 
 /**
  *  Name of the item.
  */
-@property (nonatomic, readwrite, strong) NSString *name;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified name;
 
 /**
  *  A unique string identifying the version of this item.
  */
-@property (nonatomic, readwrite, strong) NSString *etag;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified etag;
 
 /**
  *  Convenience method to check if the item is a File.
@@ -54,95 +54,95 @@
 /**
  *  A unique ID for use with Events.
  */
-@property (nonatomic, readwrite, strong) NSString *sequenceID;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified sequenceID;
 
 /**
  *  Name of the item.
  */
-@property (nonatomic, readwrite, strong) NSString *name;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified name;
 
 /**
  *  A unique string identifying the version of this item.
  */
-@property (nonatomic, readwrite, strong) NSString *etag;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified etag;
 
 /**
  *  Date the item was created.
  */
-@property (nonatomic, readwrite, strong) NSDate *createdDate;
+@property (nonatomic, readwrite, strong) NSDate * _Null_unspecified createdDate;
 
 /**
  *  Date the item was last modified.
  */
-@property (nonatomic, readwrite, strong) NSDate *modifiedDate;
+@property (nonatomic, readwrite, strong) NSDate * _Null_unspecified modifiedDate;
 
 /**
  *  Description of the item.
  */
-@property (nonatomic, readwrite, strong) NSString *itemDescription;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified itemDescription;
 
 /**
  *  Size of the item. For files, this is simply the file size. For folders, it is the combined size
  *  of all the contents in it.
  */
-@property (nonatomic, readwrite, strong) NSNumber *size;
+@property (nonatomic, readwrite, strong) NSNumber * _Null_unspecified size;
 
 /**
  *   An ordered array representing the "path" of the item, starting with the root.
  */
-@property (nonatomic, readwrite, strong) NSArray <BOXFolderMini *> *pathFolders;
+@property (nonatomic, readwrite, strong) NSArray <BOXFolderMini *> * _Null_unspecified pathFolders;
 
 /**
  *  If the item is in the trash, the date in which it was moved to the trash.
  */
-@property (nonatomic, readwrite, strong) NSDate *trashedDate;
+@property (nonatomic, readwrite, strong) NSDate * _Null_unspecified trashedDate;
 
 /**
  *  The time the item was purged from the trash.
  */
-@property (nonatomic, readwrite, strong) NSDate *purgedDate;
+@property (nonatomic, readwrite, strong) NSDate * _Null_unspecified purgedDate;
 
 /**
  *  The time the item was originally created (according to the uploader).
  */
-@property (nonatomic, readwrite, strong) NSDate *contentCreatedDate;
+@property (nonatomic, readwrite, strong) NSDate * _Null_unspecified contentCreatedDate;
 
 /**
  *  The time the item was last modified (according to the uploader).
  */
-@property (nonatomic, readwrite, strong) NSDate *contentModifiedDate;
+@property (nonatomic, readwrite, strong) NSDate * _Null_unspecified contentModifiedDate;
 
 /**
  *  The user that created the item.
  */
-@property (nonatomic, readwrite, strong) BOXUserMini *creator;
+@property (nonatomic, readwrite, strong) BOXUserMini * _Null_unspecified creator;
 
 /**
  *  The user that last modified the item.
  */
-@property (nonatomic, readwrite, strong) BOXUserMini *lastModifier;
+@property (nonatomic, readwrite, strong) BOXUserMini * _Null_unspecified lastModifier;
 
 /**
  *  The user that owns the item.
  */
-@property (nonatomic, readwrite, strong) BOXUserMini *owner;
+@property (nonatomic, readwrite, strong) BOXUserMini * _Null_unspecified owner;
 
 /**
  *  The shared link for the item.
  */
-@property (nonatomic, readwrite, strong) BOXSharedLink *sharedLink;
+@property (nonatomic, readwrite, strong) BOXSharedLink * _Null_unspecified sharedLink;
 
 /**
  *  List of the possible shared link access levels that can be set for a shared link for this item.
  *  Warning: By default, the Box API does not return this value, and it will be nil.
  *  You must request it by setting the "fields" of the request.
  */
-@property (nonatomic, readwrite, strong) NSArray <NSString *> *allowedSharedLinkAccessLevels;
+@property (nonatomic, readwrite, strong) NSArray <NSString *> * _Null_unspecified allowedSharedLinkAccessLevels;
 
 /**
  *  The folder that contains this item.
  */
-@property (nonatomic, readwrite, strong) BOXFolderMini *parentFolder;
+@property (nonatomic, readwrite, strong) BOXFolderMini * _Null_unspecified parentFolder;
 
 /**
  *  Whether this item is deleted or not.
@@ -153,7 +153,7 @@
 /**
  *  The collections that this item belongs to. An array of BoxCollection objects.
  */
-@property (nonatomic, readwrite, strong) NSArray <BOXCollection *> *collections;
+@property (nonatomic, readwrite, strong) NSArray <BOXCollection *> * _Null_unspecified collections;
 
 /**
  *  Whether a shared link can be created for the item.
@@ -212,14 +212,14 @@
  *  Warning: By default, the Box API does not return this value, and it will be nil.
  *  You must request it by setting the "fields" of the request.
  */
-@property (nonatomic, readwrite, strong) NSArray *allowedInviteeRoles;
+@property (nonatomic, readwrite, strong) NSArray * _Null_unspecified allowedInviteeRoles;
 
 /**
  *  Metadata values for an item
  *  Warning: By default, the Box API does not return this value, and it will be nil.
  *  You must request it by setting the "fields" of the request.
  */
-@property (nonatomic, readwrite, strong) NSArray *metadata;
+@property (nonatomic, readwrite, strong) NSArray * _Null_unspecified metadata;
 
 /**
  *  Convenience method to check if the item is a File.

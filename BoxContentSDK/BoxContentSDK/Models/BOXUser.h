@@ -31,13 +31,13 @@
  */
 @interface ServerAuthUser : BOXModel <UniqueSDKUser>
 
-@property (nonatomic, readwrite, copy) NSString *uniqueId;
-@property (nonatomic, readwrite, copy) NSString *name;
-@property (nonatomic, readwrite, copy) NSString *login;
+@property (nonatomic, readwrite, copy) NSString * _Null_unspecified uniqueId;
+@property (nonatomic, readwrite, copy) NSString * _Null_unspecified name;
+@property (nonatomic, readwrite, copy) NSString * _Null_unspecified login;
 
-- (instancetype)initWithUniqueID:(NSString *)uniqueID;
+- (instancetype _Nonnull )initWithUniqueID:(NSString *_Null_unspecified)uniqueID;
 
-- (instancetype)initWithUniqueID:(NSString *)uniqueID name:(NSString *)name login:(NSString *)login;
+- (instancetype _Nonnull )initWithUniqueID:(NSString *_Null_unspecified)uniqueID name:(NSString *_Null_unspecified)name login:(NSString *_Null_unspecified)login;
 
 @end
 
@@ -51,12 +51,12 @@
 /**
  *  Name of the user. May be nil if the user has not set the name in Box.
  */
-@property (nonatomic, readwrite, copy) NSString *name;
+@property (nonatomic, readwrite, copy) NSString * _Null_unspecified name;
 
 /**
  *  Login of the user, usually an email address but not always.
  */
-@property (nonatomic, readwrite, copy) NSString *login;
+@property (nonatomic, readwrite, copy) NSString * _Null_unspecified login;
 
 @end
 
@@ -68,62 +68,62 @@
 /**
  *  Date the user was created.
  */
-@property (nonatomic, readwrite, strong) NSDate *createdDate;
+@property (nonatomic, readwrite, strong) NSDate * _Null_unspecified createdDate;
 
 /**
  *  Date the user was modified.
  */
-@property (nonatomic, readwrite, strong) NSDate *modifiedDate;
+@property (nonatomic, readwrite, strong) NSDate * _Null_unspecified modifiedDate;
 
 /**
  *  Language of the user.
  */
-@property (nonatomic, readwrite, strong) NSString *language;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified language;
 
 /**
  *  Timezone of the user.
  */
-@property (nonatomic, readwrite, strong) NSString *timeZone;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified timeZone;
 
 /**
  *  The user’s total available space amount in bytes.
  */
-@property (nonatomic, readwrite, strong) NSNumber *spaceAmount;
+@property (nonatomic, readwrite, strong) NSNumber * _Null_unspecified spaceAmount;
 
 /**
  *  The amount of space in use by the user in bytes.
  */
-@property (nonatomic, readwrite, strong) NSNumber *spaceUsed;
+@property (nonatomic, readwrite, strong) NSNumber * _Null_unspecified spaceUsed;
 
 /**
  *  The maximum individual file size in bytes this user can have in bytes.
  */
-@property (nonatomic, readwrite, strong) NSNumber *maxUploadSize;
+@property (nonatomic, readwrite, strong) NSNumber * _Null_unspecified maxUploadSize;
 
 /**
  *  Can be active, inactive. cannot_delete_edit, or cannot_delete_edit_upload.
  */
-@property (nonatomic, readwrite, strong) NSString *status;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified status;
 
 /**
  *  The user's job title.
  */
-@property (nonatomic, readwrite, strong) NSString *jobTitle;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified jobTitle;
 
 /**
  *  The user's phone number.
  */
-@property (nonatomic, readwrite, strong) NSString *phone;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified phone;
 
 /**
  *  The user's address.
  */
-@property (nonatomic, readwrite, strong) NSString *address;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified address;
 
 /**
  *  URL of the user's avatar image.
  */
-@property (nonatomic, readwrite, strong) NSURL *avatarURL;
+@property (nonatomic, readwrite, strong) NSURL * _Null_unspecified avatarURL;
 
 /**
  *  Whether this user has a custom avatar set.
@@ -135,14 +135,14 @@
  *  Warning: By default, the Box API does not return this value, and it will be nil.
  *  You must request it by setting the "fields" of the request.
  */
-@property (nonatomic, readwrite, strong) NSString *role;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified role;
 
 /**
  *  An array of key/value pairs set by the user’s admin.
  *  Warning: By default, the Box API does not return this value, and it will be nil.
  *  You must request it by setting the "fields" of the request.
  */
-@property (nonatomic, readwrite, strong) NSArray *trackingCodes;
+@property (nonatomic, readwrite, strong) NSArray * _Null_unspecified trackingCodes;
 
 /**
  *  Whether this user can see other enterprise users in her contact list.
@@ -184,7 +184,7 @@
  *  Warning: By default, the Box API does not return this value, and it will be nil.
  *  You must request it by setting the "fields" of the request.
  */
-@property (nonatomic, readwrite, strong) BOXEnterpriseMini *enterprise;
+@property (nonatomic, readwrite, strong) BOXEnterpriseMini * _Null_unspecified enterprise;
 
 /**
  *  Whether or not this user can create BoxNotes.

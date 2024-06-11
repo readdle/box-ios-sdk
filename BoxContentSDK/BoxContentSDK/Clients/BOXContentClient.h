@@ -19,16 +19,16 @@
 @protocol BOXURLSessionManagerDelegate;
 @protocol UniqueSDKUser;
 
-typedef void (^ServerAuthFetchTokenBlock)(NSString *, NSDictionary *, void (^)(NSString *, NSDate *, NSError *));
+typedef void (^ServerAuthFetchTokenBlock)(NSString *_Null_unspecified, NSDictionary *_Null_unspecified, void (^_Null_unspecified)(NSString *_Null_unspecified, NSDate *_Null_unspecified, NSError *_Null_unspecified));
 
-extern NSString *const BOXContentClientBackgroundTempFolder;
+extern NSString * _Null_unspecified const BOXContentClientBackgroundTempFolder;
 
 @interface BOXContentClient : NSObject <BOXAPIAccessTokenDelegate>
 
 /**
  *  Allows the SDK to associate shared links with Box Items.
  */
-@property (nonatomic, readonly, strong) BOXSharedLinkHeadersHelper *sharedLinksHeaderHelper;
+@property (nonatomic, readonly, strong) BOXSharedLinkHeadersHelper * _Null_unspecified sharedLinksHeaderHelper;
 
 /**
  *  By setting the cache client, the BOXContentClient will now support caching for BoxRequests.
@@ -38,19 +38,19 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
 /**
  * The SDK's session instance.
  */
-@property (nonatomic, readonly, strong) BOXAbstractSession *session;
+@property (nonatomic, readonly, strong) BOXAbstractSession * _Null_unspecified session;
 
 /**
  *  The custom prefix for the user agent. If set, the prefix will be appended with ; followed by the default Box SDK user agent string.
  */
-@property (nonatomic, readwrite, strong) NSString *userAgentPrefix;
+@property (nonatomic, readwrite, strong) NSString * _Null_unspecified userAgentPrefix;
 
 /**
  *  The client's queue manager. All API calls are scheduled by this queue manager.
  *  The queueManager is shared with the session (for making authorization and refresh
  *  calls) and the filesManager and foldersManager (for making API calls).
  */
-@property (nonatomic, readwrite, strong) BOXAPIQueueManager *queueManager;
+@property (nonatomic, readwrite, strong) BOXAPIQueueManager * _Null_unspecified queueManager;
 
 /**
  * This property reflects whether the client should attempt the authentication through the
@@ -63,12 +63,12 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  * This property is used to temporarily hold the authentication completion block in the case of
  * App-to-App authentication through the Box app.
  */
-@property (nonatomic, readwrite, copy) void (^authenticationCompletionBlock)(BOXUser *user, NSError *error);
+@property (nonatomic, readwrite, copy) void (^ _Null_unspecified authenticationCompletionBlock)(BOXUser * _Null_unspecified user, NSError * _Null_unspecified error);
 
 /**
  * The Box user associated with this SDK client. This will be nil if no user has been authenticated yet.
  */
-@property (nonatomic, readonly, strong) id<UniqueSDKUser> user;
+@property (nonatomic, readonly, strong) id<UniqueSDKUser> _Null_unspecified user;
 
 /**
  * The delegate for the BOXContentClient instance. Internally setting the BOXContentClient's delegate
@@ -90,7 +90,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  *
  *  @return array of BOXUserMini model objects
  */
-+ (NSArray *)users;
++ (NSArray *_Null_unspecified)users;
 
 /**
  *  You may use this to retrieve a content client, only if your app allows for only one Box user to be authenticated at a time.
@@ -99,7 +99,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  *
  *  @return An existing BOXContentClient if it already exists. Otherwise, a new BOXContentClient wil be created.
  */
-+ (BOXContentClient *)defaultClient;
++ (BOXContentClient *_Null_unspecified)defaultClient;
 
 /**
  *  Use this to refresh the default client based on the user currently stored in the keychain.
@@ -109,7 +109,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
 + (void)refreshDefaultClientFromKeychain;
 
 /**
- *  Get a BOXContentClient for a specific user that has an authenticated session. 
+ *  Get a BOXContentClient for a specific user that has an authenticated session.
  *  You can obtain a list of users with through the 'users' method.
  *  NOTE: Unless you want to allow your app to manage multiple Box users at one time, it is simpler to use
  *  'defaultClient' instead of this method.
@@ -118,7 +118,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  *
  *  @return BOXContentClient for the specified user
  */
-+ (BOXContentClient *)clientForUser:(BOXUserMini *)user;
++ (BOXContentClient *_Null_unspecified)clientForUser:(BOXUserMini *_Null_unspecified)user;
 
 /**
  *  Get an unauthenticated BOXContentClient.
@@ -127,7 +127,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  *
  *  @return An unauthenticated BOXContentClient
  */
-+ (BOXContentClient *)clientForNewSession;
++ (BOXContentClient *_Null_unspecified)clientForNewSession;
 
 /**
  * Get a BOXContentClient that supports server-based auth (App Users or downscoped tokens).
@@ -139,7 +139,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  *
  * @return BOXContentClient that is configured for server-based auth
  */
-+ (BOXContentClient *)clientForServerAuthUser:(nonnull ServerAuthUser *)serverAuthUser
++ (BOXContentClient *_Null_unspecified)clientForServerAuthUser:(nonnull ServerAuthUser *)serverAuthUser
                                  initialToken:(nullable NSString *)token
                           fetchTokenBlockInfo:(nullable NSDictionary *)fetchTokenBlockInfo
                               fetchTokenBlock:(nonnull ServerAuthFetchTokenBlock)fetchTokenBlock;
@@ -156,7 +156,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  * See the [Box OAuth2 documentation](http://developers.box.com/oauth/) for
  * information on where to find this value.
  */
-+ (void)setClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret;
++ (void)setClientID:(NSString *_Null_unspecified)clientID clientSecret:(NSString *_Null_unspecified)clientSecret;
 
 /**
  * Client ID:
@@ -173,7 +173,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  * Redirect UR:
  * If you set a custom Redirect URI in your App's developer settings, set it here too.
  */
-+ (void)setClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret redirectURIString:(NSString *)redirectURIString;
++ (void)setClientID:(NSString *_Null_unspecified)clientID clientSecret:(NSString *_Null_unspecified)clientSecret redirectURIString:(NSString *_Null_unspecified)redirectURIString;
 
 /**
  * This property controls whether clients should attempt authentication through the Box app
@@ -190,14 +190,14 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  *
  *  @return NSBundle
  */
-+ (NSBundle *)resourcesBundle;
++ (NSBundle *_Null_unspecified)resourcesBundle;
 
-/** 
+/**
  *  Overides the default sharedLink delegate with the provided object.
  *  By default the SDK persists shared link information in memory only. Override this to implement your own custom persistence logic.
  *  @param delegate The object that will receive the BOXSharedLinkStorageProtocol delegate callbacks.
- **/ 
-- (void)setSharedLinkStorageDelegate:(id <BOXSharedLinkStorageProtocol>)delegate;
+ **/
+- (void)setSharedLinkStorageDelegate:(id <BOXSharedLinkStorageProtocol>_Null_unspecified)delegate;
 
 /**
  * This method needs to be called once in main app to be ready to
@@ -208,9 +208,9 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  * @param rootCacheDir      root directory for caching background session tasks' data
  * @param completionBlock   block to execute upon completion of setup, indicating background tasks can be provided
  */
-+ (void)oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>)delegate
-                                                 rootCacheDir:(NSString *)rootCacheDir
-                                                   completion:(void (^)(NSError *error))completionBlock;
++ (void)oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>_Null_unspecified)delegate
+                                                 rootCacheDir:(NSString *_Nonnull)rootCacheDir
+                                                   completion:(void (^_Null_unspecified)(NSError * _Null_unspecified error))completionBlock;
 
 /**
  * This method needs to be called once in app extensions to be ready to
@@ -223,10 +223,10 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  *                          tasks created from extensions
  * @param completionBlock   block to execute upon completion of setup, indicating background tasks can be provided
  */
-+ (void)oneTimeSetUpInExtensionToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>)delegate
-                                                       rootCacheDir:(NSString *)rootCacheDir
-                                          sharedContainerIdentifier:(NSString *)sharedContainerIdentifier
-                                                         completion:(void (^)(NSError *error))completionBlock;
++ (void)oneTimeSetUpInExtensionToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>_Null_unspecified)delegate
+                                                       rootCacheDir:(NSString *_Nonnull)rootCacheDir
+                                          sharedContainerIdentifier:(NSString *_Null_unspecified)sharedContainerIdentifier
+                                                         completion:(void (^_Null_unspecified)(NSError * _Null_unspecified error))completionBlock;
 
 /**
  * This method needs to be called in the main app to allow it reconnecting to background session tasks created by
@@ -235,20 +235,20 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  * @param backgroundSessionId   Id of background session from extension
  * @param completionBlock       block to execute upon completion of reconnecting to background session
  */
-+ (void)reconnectWithBackgroundSessionIdFromExtension:(NSString *)backgroundSessionId
-                                           completion:(void (^)(NSError *error))completionBlock;
++ (void)reconnectWithBackgroundSessionIdFromExtension:(NSString *_Null_unspecified)backgroundSessionId
+                                           completion:(void (^_Null_unspecified)(NSError * _Null_unspecified error))completionBlock;
 
 /**
  *  API base URLs.
  **/
-+ (NSString *)APIBaseURL;
-+ (NSString *)APIBaseURLWithoutVersion;
-+ (NSString *)OAuth2BaseURL;
-+ (NSString *)APIAuthBaseURL;
-+ (NSString *)APIUploadBaseURL;
-+ (void)setAPIBaseURL:(NSString *)APIBaseURL;
-+ (void)setOAuth2BaseURL:(NSString *)OAuth2BaseURL;
-+ (void)setAPIAuthBaseURL:(NSString *)APIAuthBaseURL;
-+ (void)setAPIUploadBaseURL:(NSString *)APIUploadBaseURL;
++ (NSString *_Null_unspecified)APIBaseURL;
++ (NSString *_Null_unspecified)APIBaseURLWithoutVersion;
++ (NSString *_Null_unspecified)OAuth2BaseURL;
++ (NSString *_Null_unspecified)APIAuthBaseURL;
++ (NSString *_Null_unspecified)APIUploadBaseURL;
++ (void)setAPIBaseURL:(NSString *_Null_unspecified)APIBaseURL;
++ (void)setOAuth2BaseURL:(NSString *_Null_unspecified)OAuth2BaseURL;
++ (void)setAPIAuthBaseURL:(NSString *_Null_unspecified)APIAuthBaseURL;
++ (void)setAPIUploadBaseURL:(NSString *_Null_unspecified)APIUploadBaseURL;
 
 @end

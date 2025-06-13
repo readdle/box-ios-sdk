@@ -432,6 +432,8 @@ forHTTPHeaderField:(NSString *)field
     return formData;
 }
 
+#define BCContentStreamChunkSize 1024*8
+
 - (NSMutableURLRequest *)requestWithMultipartFormRequest:(NSURLRequest *)request
                              writingStreamContentsToFile:(NSURL *)fileURL
                                        completionHandler:(void (^)(NSString *digest, NSError *error))handler
@@ -450,11 +452,11 @@ forHTTPHeaderField:(NSString *)field
         BOXMultipartBodyStream *bodyStream = (BOXMultipartBodyStream*) inputStream;
         bodyStream.contentProcessor = streamingHashHelper;
         [streamingHashHelper open];
-        const NSUInteger chunkSize = 1024 * 8;
-        while ([inputStream hasBytesAvailable] && [outputStream hasSpaceAvailable]) { @autoreleasepool {
-            uint8_t buffer[chunkSize];
 
-            NSInteger bytesRead = [inputStream read:buffer maxLength:chunkSize];
+        while ([inputStream hasBytesAvailable] && [outputStream hasSpaceAvailable]) { @autoreleasepool {
+            uint8_t buffer[BCContentStreamChunkSize];
+
+            NSInteger bytesRead = [inputStream read:buffer maxLength:BCContentStreamChunkSize];
             if (inputStream.streamError || bytesRead < 0) {
                 error = inputStream.streamError;
                 break;

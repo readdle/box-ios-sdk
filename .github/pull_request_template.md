@@ -13,5 +13,11 @@ If it would be useful, please, include screenshots, animated GIFs or screencasts
 
 __PR submission checklist__
 
+- [ ] PR name contains Jira ticket number
+- [ ] PR have correct target branch
+- [ ] .s7substat has correct subrepos revisions
+- [ ] Common ([Obj-C](https://readdle-c.atlassian.net/wiki/spaces/DOC/pages/3802038524/Common+Objective-C+Code+Style+Guide+for+Docs+PE+iOS+Mac+Teams) / [Swift](https://readdle-c.atlassian.net/wiki/spaces/DOC/pages/4662394906/Common+Swift+Code+Style+Guide+for+Docs+PE+iOS+Mac+Teams)) and your team's coding conventions and style guidelines are followed
+- [ ] Unit tests to cover the critical parts of the code are written
+- [ ] Relevant documentation updated / added if needed
 - [ ] Self-reviewed using the [self-review checklist](https://readdle-c.atlassian.net/wiki/spaces/DOC/pages/4645978135) prior to submitting a PR
 - [ ] All recommendations from the [How to create Pull Request](https://readdle-c.atlassian.net/wiki/spaces/DOC/pages/4568416271/How+to+create+Pull+Request+PR) document are followed

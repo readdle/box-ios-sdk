@@ -432,6 +432,8 @@ forHTTPHeaderField:(NSString *)field
     return formData;
 }
 
+#define chunkSize 1024 * 8
+
 - (NSMutableURLRequest *)requestWithMultipartFormRequest:(NSURLRequest *)request
                              writingStreamContentsToFile:(NSURL *)fileURL
                                        completionHandler:(void (^)(NSString *digest, NSError *error))handler
@@ -450,7 +452,7 @@ forHTTPHeaderField:(NSString *)field
         BOXMultipartBodyStream *bodyStream = (BOXMultipartBodyStream*) inputStream;
         bodyStream.contentProcessor = streamingHashHelper;
         [streamingHashHelper open];
-        const NSUInteger chunkSize = 1024 * 8;
+
         while ([inputStream hasBytesAvailable] && [outputStream hasSpaceAvailable]) { @autoreleasepool {
             uint8_t buffer[chunkSize];
 

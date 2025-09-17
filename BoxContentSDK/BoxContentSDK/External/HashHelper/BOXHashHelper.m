@@ -29,7 +29,8 @@
 #include <stdio.h>
 
 // Constants
-static const size_t FileHashDefaultChunkSizeForReadingData = 4096;
+//static const size_t FileHashDefaultChunkSizeForReadingData = 4096;
+#define FileHashDefaultChunkSizeForReadingData 4096
 
 // Function pointer types for functions used in the computation 
 // of a cryptographic hash.
@@ -62,18 +63,14 @@ typedef struct _FileHashComputationContext {
     CFURLRef fileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)filePath, kCFURLPOSIXPathStyle, (Boolean)false);
     CFReadStreamRef readStream = fileURL ? CFReadStreamCreateWithFile(kCFAllocatorDefault, fileURL) : NULL;
     BOOL didSucceed = readStream ? (BOOL)CFReadStreamOpen(readStream) : NO;
-    if (didSucceed) {
-        
-        // Use default value for the chunk size for reading data.
-        const size_t chunkSizeForReadingData = FileHashDefaultChunkSizeForReadingData;
-        
+    if (didSucceed) {        
         // Initialize the hash object
         (*context->initFunction)(context->hashObjectPointer);
         
         // Feed the data to the hash object.
         BOOL hasMoreData = YES;
         while (hasMoreData) {
-            uint8_t buffer[chunkSizeForReadingData];
+            uint8_t buffer[FileHashDefaultChunkSizeForReadingData];
             CFIndex readBytesCount = CFReadStreamRead(readStream, (UInt8 *)buffer, (CFIndex)sizeof(buffer));
             if (readBytesCount == -1) {
                 break;

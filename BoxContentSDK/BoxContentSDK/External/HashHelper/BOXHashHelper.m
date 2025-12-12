@@ -29,7 +29,6 @@
 #include <stdio.h>
 
 // Constants
-//static const size_t FileHashDefaultChunkSizeForReadingData = 4096;
 #define FileHashDefaultChunkSizeForReadingData 4096
 
 // Function pointer types for functions used in the computation 

@@ -14,7 +14,6 @@
 #import "BOXFileDownloadRequest.h"
 #import "BOXFileUpdateRequest.h"
 #import "BOXFileUploadRequest.h"
-#import "BOXFileDownloadRequest.h"
 #import "BOXTrashedFileRestoreRequest.h"
 #import "BOXFileThumbnailRequest.h"
 #import "BOXPreflightCheckRequest.h"

@@ -118,7 +118,6 @@
 #import <BoxContentSDK/BOXMetadataTemplateRequest.h>
 #import <BoxContentSDK/BOXStreamOperation.h>
 #import <BoxContentSDK/BOXRecentItemsRequest.h>
-#import <BoxContentSDK/BOXRecentItemsRequest.h>
 #import <BoxContentSDK/BOXFileRepresentationDownloadRequest.h>
 #import <BoxContentSDK/BOXRepresentationInfoRequest.h>
 
@@ -168,7 +167,6 @@
 #import <BoxContentSDK/NSError+BOXContentSDKAdditions.h>
 #import <BoxContentSDK/UIApplication+ExtensionSafeAdditions.h>
 #import <BoxContentSDK/UIDevice+BOXContentSDKAdditions.h>
-#import <BoxContentSDK/NSString+BOXContentSDKAdditions.h>
 #import <BoxContentSDK/NSURL+BOXURLHelper.h>
 #import <BoxContentSDK/NSJSONSerialization+BOXContentSDKAdditions.h>
 #import <BoxContentSDK/NSDate+BOXContentSDKAdditions.h>

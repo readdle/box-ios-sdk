@@ -27,6 +27,7 @@
 #else
 #import <CoreServices/CoreServices.h>
 #endif
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 NSString * const BOXURLRequestSerializationErrorDomain = @"com.alamofire.error.serialization.request";
 NSString * const BOXNetworkingOperationFailingURLRequestErrorKey = @"com.alamofire.serialization.request.error.response";
@@ -42,7 +43,7 @@ typedef NSString * (^BOXQueryStringSerializationBlock)(NSURLRequest *request, id
  In RFC 3986 - Section 3.4, it states that the "?" and "/" characters should not be escaped to allow
  query strings to include a URL. Therefore, all "reserved" characters with the exception of "?" and "/"
  should be percent-escaped in the query string.
-    - parameter string: The string to be percent-escaped.
+    - parameter string: The string to be percent-escaped.l
     - returns: The percent-escaped string.
  */
 NSString * BOXPercentEscapedStringFromString(NSString *string) {
@@ -625,9 +626,12 @@ static inline NSString * BOXMultipartFormFinalBoundary(NSString *boundary) {
 }
 
 static inline NSString * BOXContentTypeForPathExtension(NSString *extension) {
-    NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
-    NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
-    if (!contentType) {
+    if (0 == extension.length) {
+        return @"application/octet-stream";
+    }
+
+    NSString *contentType = [UTType typeWithFilenameExtension:extension].preferredMIMEType;
+    if (nil == contentType) {
         return @"application/octet-stream";
     } else {
         return contentType;

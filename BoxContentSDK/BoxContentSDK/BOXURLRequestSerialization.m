@@ -625,8 +625,12 @@ static inline NSString * BOXMultipartFormFinalBoundary(NSString *boundary) {
 }
 
 static inline NSString * BOXContentTypeForPathExtension(NSString *extension) {
+// Keep the upstream MobileCoreServices implementation to minimize fork diff.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
     NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
+#pragma clang diagnostic pop
     if (!contentType) {
         return @"application/octet-stream";
     } else {

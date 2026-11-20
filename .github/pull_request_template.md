@@ -17,7 +17,11 @@ __PR submission checklist__
 - [ ] PR have correct target branch
 - [ ] .s7substat has correct subrepos revisions
 - [ ] Common ([Obj-C](https://readdle-c.atlassian.net/wiki/spaces/DOC/pages/3802038524/Common+Objective-C+Code+Style+Guide+for+Docs+PE+iOS+Mac+Teams) / [Swift](https://readdle-c.atlassian.net/wiki/spaces/DOC/pages/4662394906/Common+Swift+Code+Style+Guide+for+Docs+PE+iOS+Mac+Teams)) and your team's coding conventions and style guidelines are followed
+- [ ] All new UI components meet accessibility expectations according to the [Accessibility guide](https://readdle-c.atlassian.net/wiki/spaces/RD2/pages/5595496478/Accessibility+guide).
 - [ ] Unit tests to cover the critical parts of the code are written
-- [ ] Relevant documentation updated / added if needed
+- [ ] Relevant documentation updated / added if needed [^1]
 - [ ] Self-reviewed using the [self-review checklist](https://readdle-c.atlassian.net/wiki/spaces/DOC/pages/4645978135) prior to submitting a PR
 - [ ] All recommendations from the [How to create Pull Request](https://readdle-c.atlassian.net/wiki/spaces/DOC/pages/4568416271/How+to+create+Pull+Request+PR) document are followed
+
+[^1]: List of documents we maintain up to date:
+    - [Accessibility Guide](https://readdle-c.atlassian.net/wiki/spaces/RD2/pages/5595496478/Accessibility+guide)
